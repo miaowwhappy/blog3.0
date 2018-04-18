@@ -1,0 +1,101 @@
+﻿{%extends 'layout.html'%}}
+
+{%block content%}
+     <div class="banner-pic">
+      <ul class="texts">
+        <p>Some things turned around for a lifetime. </p>
+        <p>有些事一转身就是一辈子</p>
+      </ul>
+    </div>
+    <div class="bloglist">
+      <h2>
+        <p><span>所有</span>相册</p>
+    </h2>
+
+    {% for category in categories %}
+    <div class="album">
+        
+      <ul>                
+        <li>       	        	
+        	<a href="/picture/view?picCategoryId={{category._id.toString()}}"><img src="/public/picture/{{category.src}}"></a>
+
+        </li>       
+      </ul>
+      <div class='picIntro'>
+             <p>相册名：<span style='color:#278dce;'>{{category.name}}<span></p>
+             <p>照片总数：<span style='color:#f38307;'>{{category.Picture.length}}</span>&nbsp;张</p>
+             <p>简述：<span style='color: #535154;'>{{category.description}}</span></p>             
+             <a href="/picture/view?picCategoryId={{category._id.toString()}}" class='readmore'>进入相册>></a>        
+          </div>
+      <p class="autorl"></p>
+      <div class="dateview">{{category.addTime|date('Y.m.d',-8*60)}}</div>
+    </div>
+    {%endfor%}
+    <div  id="pager3"> 
+<ul >
+    <li >
+    {%if page <= 1%}
+    <span>没有上一页了</span>
+    {%else%}
+    <a href="/picture?page={{page-1}}">&larr; 上一页</a>
+    {%endif%}
+
+    </li>
+    {%if pages > 0%}
+    <li>{{page}}/{{pages}}</li>
+    {%else%}
+    <li>当前分页下没有内容</li>
+    {%endif%}
+    <li >
+    {%if page >= pages%}
+    <span>没有下一页了</span>
+    {%else%}
+    <a href="/picture?page={{page+1}}">下一页 &rarr;</a>
+    {%endif%}
+    </li>
+</ul>
+</div>
+    
+{%endblock%}
+{%block aside%}
+    <div class="topspaceinfo">
+      {%if userInfo._id%}
+      <div id="rightbox" >
+        <h1>{{userInfo.username}}</h1>
+        {%if userInfo.isAdmin%}
+        <p> 你好，管理员，<a href="/admin">管理后台</a></p>
+        {%else%}
+        <p class="welcome">你好，欢迎光临我的博客</p>
+        {%endif%}
+        <p ><a href="javascript:;" id="logout">退出</a></p> 
+      </div>
+
+      {% else %}
+      <div id="loginbox" >
+        <form >
+            <p>用户名：<input type="text" name="username"></p>
+            <p>密码：<input type="text" name="password"></p>
+            <button type="button">登陆</button>
+            没有账号，<a href="javascript:;">请注册</a>
+            <p  class="colWarning"></p>
+          </form>
+      </div>
+      <div id="registerbox" style="display: none">
+          <form > 
+            <p>用户名：<input type="text" name="username"></p>
+            <p>密码：<input type="text" name="password"></p>
+            <p>确认密码：<input type="text" name="repassword"></p>
+            <button type="button">注册</button>
+            已经注册，<a href="javascript:;">请登录</a>
+            <p  class="colWarning"></p>
+          </form>
+      </div>
+      {% endif %}
+    </div>
+    <div class="rnav">
+      {%for cate in picCategories%}
+        <li class="rnav-inside "><a href="/picture/view?picCategoryId={{cate.id}}">{{cate.name}}</a></li>
+      {%endfor%}
+    </div>
+
+{%endblock%}

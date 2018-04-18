@@ -1,0 +1,75 @@
+﻿{%extends 'layout.html'%}}
+
+{%block content%}
+
+    <h2 class="about_h">您现在的位置是：<a href="/">首页</a>><a href="/picture">相册</a>>
+    <a href="/picture/view?picCategoryId={{contents|first.picCategory.id}}">{{contents|first.picCategory.name}}</a></h2>
+    
+    <div class="template">
+      <h3>
+        <p><a href="/picture"><span>相册</span></a>/{{contents|first.picCategory.name}}</p>
+        </h3>
+      <ul>
+        {% for content in contents%}
+        <li>
+        	<img src="/public/picture/{{content.src}}" 
+			date-description="{{content.description}}"
+			data-role='lightbox' data-source='/public/picture/{{content.src}}'  
+		    data-group='{{content.picCategory.name}}' data-id='{{content._id.toString()}}' 
+		    data-caption="{{content.picCategory.name}}/{{content.title}}">
+	        <span>{{content.title}}</span>
+        </li>
+        {%endfor%}
+      </ul>
+      <div class="clear"></div>
+    </div>
+<div  id="pager2"> 
+<ul >
+    <li >
+    {%if page <= 1%}
+    <span>没有上一页了</span>
+    {%else%}
+    <a href="/picture/view?picCategoryId={{contents|first.picCategory.id}}&page={{page-1}}">&larr; 上一页</a>
+    {%endif%}
+
+    </li>
+    {%if pages > 0%}
+    <li>{{page}}/{{pages}}</li>
+    {%else%}
+    <li>当前分页下没有内容</li>
+    {%endif%}
+    <li >
+    {%if page >= pages%}
+    <span>没有下一页了</span>
+    {%else%}
+    <a href="/picture/view?picCategoryId={{contents|first.picCategory.id}}&page={{page+1}}">下一页 &rarr;</a>
+    {%endif%}
+    </li>
+</ul>
+</div>
+    
+
+<!--lightbox插件 -->
+    <link rel="stylesheet" href="/public/css/lightbox.css">
+    <script src="/public/js/lightbox.js"></script>
+    <script>
+		$(function(){
+
+	      var lightbox = new LightBox({
+	      	                         speed:600,
+	      	                         maxWidth:900,
+	      	                         maxHeight:600,
+	      	                         maskOpacity:0.4
+	                                 });
+
+		});
+    </script>
+{%endblock%}
+
+{%block aside%}
+    <div class="rnav">
+      {%for cate in categories%}
+        <li class="rnav-inside "><a href="/picture/view?picCategoryId={{cate.id}}">{{cate.name}}</a></li>
+      {%endfor%}
+    </div>
+{%endblock%}

@@ -1,0 +1,251 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" user-scalabel="no">
+<style>
+*{
+	margin:0;
+	padding:0;
+	box-sizing:border-box;
+}
+html,body{
+	overflow:hidden;
+}
+html,body,#fullPage,.section{
+	height:100%;
+	width:100%;
+}
+.sectionOne{
+	background-color:red;
+}
+.sectionTwo{
+	background-color:blue;
+}
+.sectionThree{
+	background-color:black;
+}
+
+#picContainer{
+	width:3.75rem;
+	height:2rem;
+	overflow:hidden;
+	position:relative;
+	top:2rem;
+}
+#pics{
+	position:absolute;
+	width:15rem;
+	height:2rem;
+}
+#pics img{	
+	display:block;
+    float:left;
+	width:3.75rem;
+	height:2rem;
+}
+span.prevBtn{
+    position:absolute;
+	background-color:black;
+	top:1rem;
+	color:white;
+	left:5px;
+	color:white;
+	z-index:10;	
+}
+span.nextBtn{
+    position:absolute;
+	background:black;
+	top:1rem;
+	color:white;
+	z-index:10;
+	right:5px;
+}
+</style>
+<script src="public/test/jquery.js"></script>
+<script src="public/test/jquery.touchSwipe.min.js"></script>
+
+<script>
+$(document).ready(function(){
+
+	(function(){
+		var html = document.documentElement;
+		var hWidth = html.getBoundingClientRect().width;
+		html.style.fontSize = (hWidth / 375) * 100 + "px";
+		console.log(1 + "rem");
+	})();
+
+
+	var sectionIndex = 0;
+	var sectionNum = 3;
+	var scrollDuration = 500;
+	var scrolling = false;
+	$("#fullPage").bind("mousewheel",function(event){
+		
+		if(scrolling){
+			return
+		};
+		scrolling = true
+	
+		if(event.originalEvent.wheelDelta < 0){
+			scrollUp();
+		}else{
+			scrollDown();
+
+		};
+	});
+	function scrollDown(){
+		if(--sectionIndex < 0){
+			sectionIndex++;
+			scrolling = false;
+
+		}else{
+
+			scrollPage();
+
+		};
+	};
+	function scrollUp(){
+		if(++sectionIndex >= sectionNum){
+            sectionIndex--;
+			scrolling = false;
+		}else{
+
+			scrollPage();
+		};
+	};
+	function scrollPage(){
+		var scrollHeight = $(window).height() * sectionIndex;
+        $("#fullPage").css({
+        	"transition-duration":scrollDuration + "ms",
+        	"transform":"translate3d(0px,-" + scrollHeight + "px,0px)"
+        });
+        setTimeout(function(){
+        	scrolling = false;
+        },scrollDuration);
+	};
+	document.ontouchmove = function(e){
+		e.preventDefault();
+	};
+	$("#fullPage").swipe({
+		swipe:function(event,direction,distance,duration,fingerCount,fingerData){
+			
+			if(scrolling){
+				return
+			};
+			scrolling = true;
+			if(direction == "up"){
+				scrollUp();
+			}else if(direction == "down"){
+				scrollDown();
+			}
+
+		}
+	});
+
+    var picIndex = 0;
+    var picNumber = 4;
+    var canScroll = true;
+    var picDuration = 500;
+
+    $(".nextBtn").click(function(){
+    	if(!canScroll){
+        	return;
+    	};
+        canScroll = false;
+       	if(++picIndex >= picNumber){
+       	    picIndex = 0;
+       	    scrollPic();
+       	}else{
+       	    scrollPic();
+        };	            
+    });
+    $(".prevBtn").click(function(){
+    	if(!canScroll){
+        	return;
+    	};
+    	canScroll = false;
+       	if(--picIndex < 0){
+       	    picIndex = 3;
+       	    scrollPic();
+       	}else{
+       	    scrollPic();
+        };
+
+    });
+
+    function scrollPic(){
+
+    	var scrollWidth = $(window).width() * picIndex;
+        $("#pics").css({
+   			"transition": picDuration + "ms",
+   			"transform":"translate3d(-" + scrollWidth +"px,0px,0px)"
+   		});
+   		setTimeout(function(){
+   			canScroll = true;
+   		},picDuration);
+    };
+
+	$("#pics").swipe({
+		swipe:function(event,direction,distance,duration,fingerCount,fingerData){   
+		    event.stopPropagation();        
+			if(direction == "left"){
+				if(!canScroll){
+		        	return;
+		    	};
+		        canScroll = false;
+		       	if(++picIndex >= picNumber){
+	       	    	picIndex = 0;
+	       	    	scrollPic();
+		       	}else{
+		       	    scrollPic();
+		        };	
+			}else if(direction == "right"){
+				if(!canScroll){
+	            	return;
+	        	};
+	        	canScroll = false;
+	           	if(--picIndex < 0){
+	           	    picIndex = 3;
+	           	    scrollPic();
+	           	}else{
+	           	    scrollPic();
+	            };
+			}else if(direction == "up"){
+				if(scrolling){
+					return
+				};
+			    scrolling = true;
+				scrollUp();
+			}else if(direction == "down"){
+				if(scrolling){
+					return
+				};
+			    scrolling = true;
+                scrollDown();
+			}
+		}
+	});
+});	
+</script>
+</head>
+<body>
+<div id="fullPage">
+	<div class="section sectionOne"></div>
+	<div class="section sectionTwo">
+		<div id="picContainer" >
+		    <div id="pics">
+				<img src="public/test/1.jpg">
+				<img src="public/test/2.jpg">
+				<img src="public/test/3.jpg">
+				<img src="public/test/4.jpg">
+			</div>
+			<span class="prevBtn"><</span>
+		    <span class="nextBtn">></span>
+	    </div>
+	</div>
+	<div class="section sectionThree"></div>
+</div>	
+</body>
+</html>

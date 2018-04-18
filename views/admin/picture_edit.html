@@ -1,0 +1,34 @@
+{% extends 'layout.html'%}
+
+{% block main %}
+<ol class="breadcrumb">
+  <li><a href="/admin">管理首页</a></li>
+  <li><span>图片修改<span><li>
+</ol>
+<h3>图片修改</h3>
+<form role="form" method="post">
+  <div class="form-group">
+    <label for="category">分类:</label>
+	  <select name="category" id="category">
+	     <!-- 为什么category._id.toString()==category.id -->
+       {%for category in categories%}}
+	  	 {%if content.picCategory.id == category.id%} 
+          <option value="{{category._id.toString()}}" name='category'  selected >{{category.name}}
+          </option>
+       {%else%}
+          <option value="{{category._id.toString()}}" name='category' >{{category.name}}</option>
+       {%endif%}  
+	  	 {%endfor%}	  	
+	  </select>
+  </div>
+  <div class="form-group" >
+    <label for="title">内容标题:</label>
+    <input type="text" class="form-control" id="title" placeholder="请输入内容标题" name="title" value="{{content.title}}">
+  </div>
+  <div class="form-group" >
+    <label for="description">简介:</label>
+    <textarea name="description" class="form-control" id="description"  rows="10" placeholder="请输入内容简介">{{content.description}}</textarea>
+  </div>
+  <button type="submit" class="btn btn-default">提交</button>
+</form>
+{% endblock %}

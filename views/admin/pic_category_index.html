@@ -1,0 +1,29 @@
+{% extends 'layout.html'%}
+
+{% block main %}
+<ol class="breadcrumb">
+  <li><a href="/admin">管理首页</a></li>
+  <li><span>图片分类列表<span><li>
+</ol>
+<h3>图片分类列表</h3>
+<table class="table table-hover table-striped">
+	<tr>
+		<th>ID</th>
+		<th>图片分类名称</th>
+		<th>相册简介</th>
+		<th>操作</th>
+	</tr>
+	{% for category in categories %}
+	<tr>
+		<td>{{category._id.toString()}}</td>
+		<td>{{category.name}}</td>
+		<td>{{category.description}}</td>
+		<td>
+			<a href="/admin/picture/category/edit?id={{category._id.toString()}}">修改</a>|
+			<a href="/admin/picture/category/delete?id={{category._id.toString()}}">删除</a>
+		</td>
+	</tr>
+	{% endfor %}
+</table>
+{% include 'page3.html'%}
+{% endblock %}

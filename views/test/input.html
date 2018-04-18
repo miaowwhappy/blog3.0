@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">  
+	<title>Document</title>
+</head>
+<script>
+window.onload = function(){
+    var reader = new FileReader();
+    var img = new Image();
+    var file = null;
+    reader.onload = function(e){
+        img.src = e.target.result;
+    };
+    document.getElementById("img").addEventListener("change",function(event){
+        file = event.target.files[0];
+        if(file.type.indexOf("image") == 0){
+            reader.readAsDataURL(event.target.files[0]);
+        };        
+    });
+    img.style.width = 600 + "px";
+    document.getElementById("showImg").appendChild(img);
+}
+</script>
+<body>
+	<input type="file" accept="image/gif,image/png" id="img">
+	<div id="showImg"></div>
+</body>
+</html>

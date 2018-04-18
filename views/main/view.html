@@ -1,0 +1,51 @@
+{% extends 'layout.html'%}
+
+{%block content%}
+<!-- <link href="public/css/style.css" rel="stylesheet"> -->
+ <h2 class="about_h">您现在的位置是：<a href="/">首页</a>><a href="/?category={{content.category.id}}">{{content.category.name}}</a>><a href="javascript:;">{{content.title}}</a></h2>
+    <div class="index_about">
+      <h2 class="c_titile">{{content.title}}</h2>
+      <p class="box_c"><span class="d_time">发布时间：{{content.addTime|date('Y年m月d日 H:i:s',-8*60)}}</span><span>编辑：{{content.user.username}}</span><span>浏览（{{content.views}}）</span><span>评论（{{content.comments.length}}）</span></p>
+      <ul class="infos">
+          </pre>
+		      {% autoescape false %}
+		         {{content.content}}
+		      {% endautoescape %}
+	      <pre>
+      </ul>  
+    </div>
+      <div id='comment' >
+	      <h3> <span>一共有<span id="messageCount"></span>条评论</span></h3>
+	      {%if userInfo._id%} 
+		  <p style="font-size: 20px">发表留言</p>
+		  <p>
+			<textarea  id="messageContent" cols="60" rows="5"></textarea>
+			<input type="hidden" id="contentId" value="{{content.id}}"><br>
+			<button id="messageBtn">提交</button>
+		  </p>
+	      {%else%}
+		  <p style="font-size: 20px">你还未登陆请登录</p>
+		  {%endif%}   
+      </div>
+      <div class="messageList" >
+	
+	  </div>
+		<div class="pager" style="">	
+			<ul>
+				<li class="prev"><a href="javascript:;">上一页</a></li>
+				<li></li>
+				<li class="next"><a href="javascript:;">下一页</a></li>
+			</ul>
+		</div>
+
+	    <script src="public/js/comment.js"></script>
+    
+	
+{%endblock%}
+{%block aside%}
+    <div class="rnav">
+      {%for cate in categories%}
+        <li class="rnav-inside "><a href="/?category={{cate.id}}">{{cate.name}}</a></li>
+      {%endfor%}
+    </div>
+{%endblock%}
