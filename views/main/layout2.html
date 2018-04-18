@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="gb2312">
+<title>那被遗忘的角落</title>
+<link href="public/images/favicon.ico" rel="shortcut icon">
+<meta name="keywords" content="个人博客" />
+<meta name="description" content="缪文文的个人博客" />
+<link href="/public/css/base.css" rel="stylesheet">
+<link href="/public/css/index.css" rel="stylesheet">
+<link href="/public/css/style.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/public/css/main.css">
+<link href="/public/css/about.css" rel="stylesheet">
+<link href="/public/css/media.css" rel="stylesheet">
+<script src="/public/js/jquery.js"></script>
+<link rel="stylesheet" href="/public/css/github.css">
+<script src="/public/js/highlight.pack.js"></script>
+<script >hljs.initHighlightingOnLoad();</script> 
+<script src="/public/js/index.js"></script>
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
+</head>
+<body>
+<div class="ibody" style="background: white">
+  
+  <div class="header2">
+    <h1>那被遗忘的角落</h1>
+    <h2>每个人的心里都会有那么一个角落，别人走不进来，自己也走不出去...</h2>
+    <div class="logo"><a href="/"></a></div>
+    <nav id="topnav">
+        <!-- 还没加focus -->
+        {%if category == ''%}
+        <a href="/" class='focus'>首页</a>
+        {%else%}
+        <a href="/" >首页</a>
+        {%endif%}
+        <a href="/" >笔记</a>
+        <a href="/picture" >相册</a>
+        <a href="/about" >关于我</a>
+
+    </nav>
+  </div>
+  <div class="article2">
+    {%block content%}
+
+    {%endblock%}  
+  </div>
+  <script src="/public/js/silder.js"></script>
+  <div class="clear"></div>  
+  <!-- 清除浮动 --> 
+</div>
+</body>
+</html> 

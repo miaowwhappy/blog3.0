@@ -1,4 +1,4 @@
-{% extends 'layout.html'%}
+{% extends 'layout2.html'%}
 
 {%block content%}
 <!-- <link href="public/css/style.css" rel="stylesheet"> -->
@@ -41,11 +41,4 @@
 	    <script src="public/js/comment.js"></script>
     
 	
-{%endblock%}
-{%block aside%}
-    <div class="rnav">
-      {%for cate in categories%}
-        <li class="rnav-inside "><a href="/?category={{cate.id}}">{{cate.name}}</a></li>
-      {%endfor%}
-    </div>
 {%endblock%}

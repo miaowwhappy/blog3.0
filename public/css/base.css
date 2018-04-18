@@ -6,7 +6,7 @@ img { border: 0; display: block }
 ul { list-style: none; }
 h1, h2, h3, h4, h5, h6 { font-size: 100%; font-weight: normal; }
 a { outline: none; }
-a:link, a:visited { text-decoration: none; }
+a:link, a:visited { text-decoration: none; } 
 a:hover { text-decoration: none; }
 .clear { clear: both; }
 .blank { height: 5px; overflow: hidden; width: 100%; margin: auto; clear: both }
@@ -15,6 +15,9 @@ a:hover { text-decoration: none; }
 header { position: relative; background: url(../images/ibodybg.png) top right no-repeat }
 header h1 { padding: 15px 0 0 80px; font-size: 22px; font-family: "Microsoft Yahei", Arial, Helvetica, sans-serif; }
 header h2 { margin: 20px 80px; color: #8e8d8d }
+.header2 { position: relative;}
+.header2 h1 { padding: 15px 0 0 80px; font-size: 22px; font-family: "Microsoft Yahei", Arial, Helvetica, sans-serif; }
+.header2 h2 { margin: 20px 80px; color: #8e8d8d }
 /* logo */
 .logo { background: url(../images/logo.png) no-repeat #000 center; width: 145px; height: 145px; border-radius: 50%; position: absolute; left: -72px; top: 40px; box-shadow: 0px 2px 2px #414141; }
 .logo:hover { background: url(../images/home.png) no-repeat #000 center; }
@@ -26,6 +29,7 @@ nav a { display: inline-block; font-size: 18px; font-family: "Microsoft Yahei", 
 nav a:hover { background: #e41635; }
 #topnav_current { background: #e41635 }/* ∏ﬂ¡¡—°÷–—’…´ */
 article { width: 73%; float: left; background: url(../images/ibodybg.png) 560px -147px no-repeat; }/* ◊Û≤‡¿∏ */
+.article2 { width: 100%}/* ◊Û≤‡¿∏ */
 aside { width: 27%; background: url(../images/ibodybg.png) -170px -147px no-repeat #000; float: right; }/* ”“≤‡¿∏ */
 /* ∞Ê»®–≈œ¢ */
 .copyright { background: white; text-align: center; color: black;padding:20px;margin:5px 0 0 0;}
