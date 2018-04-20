@@ -5,6 +5,7 @@
 article { float: none; width: 100% }
 article { background: #fff }
 header { background: url(../images/ms8.png) top right no-repeat #FFF; }
+.header2 { background: url(../images/ms8.png) top right no-repeat #FFF; }
 aside, .dateview { display: none }
 nav { padding-left: 0; text-align: center }
 nav a { padding: 0 5px; }
@@ -20,7 +21,9 @@ nav a { padding: 0 5px; }
 article { float: none; width: 100% }
 article { background: #fff }
 header { background: url(../images/ms8.png) top right no-repeat #FFF; }
+.header2 { background: url(../images/ms8.png) top right no-repeat #FFF; }
 aside, header h1, header h2, .dateview { display: none }
+aside, .header2 h1, .header2 h2, .dateview { display: none }
 nav { height: auto; line-height: 40px; text-align: center; background: #FFF; padding-left: 0px }
 nav a { display: block; background: #323232; clear: both; margin-bottom: 2px }
 .logo { position: static; margin: 0 auto 10px }
@@ -37,6 +40,8 @@ article { float: none; width: 100% }
 article { background: #fff }
 header { background: url(../images/ms8.png) top right no-repeat #FFF; }
 aside,header h1, header h2, .dateview, .banner, .banner-pic,.bloglist h2, .blogs figure img ,.album img{ display: none }
+.header2 { background: url(../images/ms8.png) top right no-repeat #FFF; }
+aside,.header2 h1, .header2 h2, .dateview, .banner, .banner-pic,.bloglist h2, .blogs figure img ,.album img{ display: none }
 nav { height: auto; line-height: 40px; text-align: center; background: #FFF; padding-left: 0px }
 nav a { display: block; background: #323232; clear: both; margin-bottom: 2px }
 .logo { position: static; margin: 0 auto 10px }
