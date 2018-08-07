@@ -211,9 +211,5 @@ router.get('/test',function(req,res){
 
 });
 
-//微信js安全接口
-router.get('/MP_verify_qGVWHKnG1a7o6Nc1.txt',function(req.res){
-	res.send("qGVWHKnG1a7o6Nc1");
-})
 
 module.exports = router;
