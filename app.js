@@ -56,8 +56,8 @@ mongoose.connect('mongodb://127.0.0.1:27017/blog',function(err){
     	console.log("123");}
     else{
     	console.log("456");
-    	app.listen(80);
-    	console.log('server started on port80');
+    	app.listen(6000);
+    	console.log('server started on port6000');
         }
     }
 );
